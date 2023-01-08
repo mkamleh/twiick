@@ -1,0 +1,19 @@
+
+
+    <div  [class.openMenuResponsive] = "isClicked" id="menuResponsive" >
+        <ul (click)="menuClicked()">
+            <a routerLink='/cat'><li >{{languge ? 'تسوق' : 'Shop'}}</li></a>
+            <hr>
+            <a routerLink='/my-orders'><li>{{languge ? 'طلباتي' : 'My Orders'}}</li></a>
+            <hr>
+            <!-- <a routerLink="/home/about-us"><li>{{languge ? 'نبذة عنا' : 'About Us'}}</li></a>
+            <hr> -->
+
+            <a routerLink="/home/contact-us"><li>{{languge ? 'تواصل معنا' : 'Contact us'}}</li></a>
+            <hr>
+            <!-- <li (click)="changeLanguge()" >{{languge ? 'English' : 'عربي'}}</li>
+            <hr> -->
+            <li  *ngIf="userState" (click)= this.onLogout() >Logout</li>
+        </ul>
+    </div>
+

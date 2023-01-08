@@ -1,0 +1,100 @@
+<ion-header>
+    <ion-toolbar color="primary" mode="ios">
+        <ion-buttons slot="end">
+
+            </ion-buttons>
+
+      <ion-title routerLink='/'>Twiick</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-content>
+
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content>
+
+
+
+
+
+
+          </ion-refresher-content>
+        </ion-refresher>
+
+        <div class = "spinnerr" *ngIf="isLoading">
+            <ion-spinner class="actualSpinner"></ion-spinner>
+        </div>
+
+
+
+          <div *ngIf="!isLoading && noOrders">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <h3>My Orders</h3>
+                    <div style="text-align:center">There is no orders under your account</div>
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+          </div>
+
+          <ion-grid *ngIf="!isLoading && !noOrders">
+              <ion-row>
+                <ion-col size="12" offset="0" size-md="8"  offset-md="2" style="text-align:right">
+                    <ion-list>
+                        <ion-item style="text-align:right"><h3 style="width: 100%;">طلباتي</h3></ion-item>
+
+
+                        <ion-item [routerLink]="['/orders-for-us',order.cartId]" *ngFor = 'let order of myOrders'>
+                          <!-- <ion-avatar slot="start">
+                            <img src="./avatar-finn.png">
+                          </ion-avatar> -->
+                          <ion-label style="text-align:right;">
+                            <h2>{{order.cartId}} :  رقم الطلب </h2>
+                           <div style="display: inline-block; margin-right: 6px;
+                           position: relative;
+                           top: -4px;"> <h3>دينار</h3> </div> <h3 style="display: inline-block"> {{order.total}} :  المجموع </h3>
+                            <p>حالة  : {{order.status}}  </p>
+                            <p>{{order.completedOn}}  :  تاريخ الطلب </p>
+                            <p> {{order.orderTime}}</p>
+                            <p> {{order.deliveryTime}}</p>
+                            <p> {{order.deliveryOption}}</p>
+
+                            <p>{{order.statusForUs}}</p>
+                            <p>{{order.customerName}}</p>
+                            <p>{{order.customerNumber}}</p>
+
+                          </ion-label>
+                        </ion-item>
+
+
+
+                    </ion-list>
+
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+
+          <div *ngIf="!isLoading && noOrders">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <h3 style="width: 100%;
+                    text-align: right;">طلباتي</h3>
+                    <div style="text-align:center">لا يوجد لديك اي طلبات </div>
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+          </div>
+
+
+
+
+
+
+
+  </ion-content>

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref='/'>back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="menuClicked()" >
+                  <ion-icon slot="icon-only" name="menu-outline">
+              </ion-icon>
+            </ion-button>
+            </ion-buttons>
+
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content >
+
+
+
+    <div class = "spinnerr" *ngIf="!loadingIsDone">
+        <ion-spinner class="actualSpinner"></ion-spinner>
+    </div>
+
+  <ion-grid *ngIf="!langague" style="margin-bottom: 58px;">
+    <ion-row>
+      <ion-col   *ngFor="let catagory of catagories" size="4" size-md="3"
+      [routerLink] = "['/cat', catagory]" >
+      <ion-card style="padding:7px;">
+          <img  src="../../assets/images/catagoriesImages/{{catagory}}.jpg"  alt="ion"/>
+
+          <p style="font-weight:1000; font-size: 12px; height: 24px; text-transform: capitalize;">{{catagory}}</p>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="langague" style="margin-bottom: 58px;">
+      <ion-row>
+        <ion-col   *ngFor="let catagory of catagories; let i = index" size="4" size-md="3"
+        [routerLink] = "['/cat', catagory]" >
+        <ion-card style="padding:7px;">
+            <img  src="../../assets/images/catagoriesImages/{{i}}.jpg"  alt="ion"/>
+
+            <p style="font-weight:1000; font-size: 12px; height: 24px; text-transform: capitalize;">{{catagory}}</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+
+</ion-content>
+
+<app-checkout-button *ngIf="!langague">
+
+</app-checkout-button>
+
+<app-checkout-button-arabic *ngIf="langague">
+
+</app-checkout-button-arabic>
+
+
+
+
+
+

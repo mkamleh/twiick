@@ -1,0 +1,49 @@
+.map {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  background-color: transparent;
+
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+}
+
+.map.visible {
+  opacity: 1;
+}
+
+
+.locateDiv{
+  z-index:10;
+
+}
+
+.custom-map-control-button {
+  appearance: button;
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin: 10px;
+  padding: 0 0.5em;
+  height: 40px;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+
+}
+.custom-map-control-button:hover {
+  background: #ebebeb;
+}
+
+.custom-map-control-button{
+  position: absolute;
+top: 41px;
+width: 100%;
+height: 50px;
+font-size: 18px;
+left: 0px;
+background-color: white;
+}
+

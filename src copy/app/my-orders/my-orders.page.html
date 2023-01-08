@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="end">
+          <ion-button (click)="menuClicked()" >
+                <ion-icon slot="icon-only" name="menu-outline">
+            </ion-icon>
+          </ion-button>
+          </ion-buttons>
+
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content>
+
+  <div class = "spinnerr" *ngIf="isLoading">
+      <ion-spinner class="actualSpinner"></ion-spinner>
+  </div>
+    <ion-grid *ngIf="!isLoading && !noOrders && !langugue">
+        <ion-row>
+          <ion-col size="12" offset="0" size-md="8"  offset-md="2">
+              <ion-list>
+                  <ion-list-header>
+                    <h3>My Orders</h3>
+                  </ion-list-header>
+
+
+                  <ion-item [routerLink]="['/my-orders',order.cartId]" *ngFor = 'let order of myOrders'>
+                    <!-- <ion-avatar slot="start">
+                      <img src="./avatar-finn.png">
+                    </ion-avatar> -->
+                    <ion-label>
+                      <h2>Order Id:  {{order.cartId}}</h2>
+                      <h3>Total:  {{order.total}}</h3>
+                      <p>Status:  {{order.status}}</p>
+                      <p>Placed on:  {{order.completedOn}}</p>
+                      <p>Order Time: {{order.orderTime}}</p>
+
+
+                    </ion-label>
+                  </ion-item>
+
+
+
+              </ion-list>
+
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="!isLoading && !noOrders && langugue">
+        <ion-row>
+          <ion-col size="12" offset="0" size-md="8"  offset-md="2" style="text-align:right">
+              <ion-list>
+                  <ion-item style="text-align:right"><h3 style="width: 100%;">طلباتي</h3></ion-item>
+
+
+                  <ion-item [routerLink]="['/my-orders',order.cartId]" *ngFor = 'let order of myOrders'>
+                    <!-- <ion-avatar slot="start">
+                      <img src="./avatar-finn.png">
+                    </ion-avatar> -->
+                    <ion-label style="text-align:right;">
+                      <h2>{{order.cartId}} :  رقم الطلب </h2>
+                     <div style="display: inline-block; margin-right: 6px;
+                     position: relative;
+                     top: -4px;"> <h3>دينار</h3> </div> <h3 style="display: inline-block"> {{order.total}} :  المجموع </h3>
+                      <p>حالة  : {{order.status}}  </p>
+                      <p>{{order.completedOn}}  :  تاريخ الطلب </p>
+                      <p>{{order.orderTime}}  :  وقت الطلب </p>
+
+                    </ion-label>
+                  </ion-item>
+
+
+
+              </ion-list>
+
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div *ngIf="!isLoading && noOrders">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h3>My Orders</h3>
+              <div style="text-align:center">There is no orders under your account</div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </div>
+
+    <div *ngIf="!isLoading && noOrders && langugue">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h3 style="width: 100%;
+              text-align: right;">طلباتي</h3>
+              <div style="text-align:center">لا يوجد لديك اي طلبات </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </div>
+
+
+
+
+
+
+</ion-content>

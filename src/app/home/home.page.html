@@ -1,0 +1,136 @@
+  <ion-header>
+    <ion-toolbar color="primary" mode="ios">
+                <ion-buttons slot="end">
+                  <ion-button (click)="menuClicked()" >
+                        <ion-icon slot="icon-only" name="menu-outline">
+                    </ion-icon>
+                  </ion-button>
+                  </ion-buttons>
+      <ion-title routerLink='/'>Twiick</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <app-menu></app-menu>
+
+
+            <img class="imgDesktop"  [routerLink]="['/cat']" src="../assets/images/banner23Large.png">
+            <img class="imgMob"  [routerLink]="['/cat']" src="../assets/images/bannerMob23Large.png">
+
+
+    <ion-grid style="display:none;" *ngIf="langague" class="gridMain">
+        <!-- <ion-row class="logoRow">
+          <ion-col size="2" size-md="1" class="logoAndButtonsCol">
+              <div class="logoContainer2" style="text-align: center">
+                  <img  class="imgClass2" src="../../assets/images/logoSupermarket.png">
+                </div>
+          </ion-col>
+        </ion-row> -->
+
+        <ion-row style="display:contents" *ngIf=loadingIsDone class="offer">
+          <ion-col size="12" size-md="8" >
+
+              <swiper class="swiper"  #swiper class="swiperSlide2"
+      [slidesPerView]="1"
+      [spaceBetween]="50"
+      [navigation]="true"
+      [loop]="true"
+      [effect]="'fade'"
+      [autoplay]="{
+        delay: 3000,
+        disableOnInteraction: false
+      }"
+    >
+
+
+    <ng-template   swiperSlide *ngFor="let offer of offersArray">
+        <ion-card>
+        <div class="counter"   [ngClass]="offer.offerDate === 'false' ? 'hidee' : 'show'">
+            <app-count-down-timer  [dDayText]="offer.offerDate"  ></app-count-down-timer>
+        </div>
+       <div style="text-align: center">
+                    <img   *ngIf="langague" class="imgBanner" src="../assets/images/productImages/newImages/{{offer.picture}}" alt="ion"/>
+                    <img  *ngIf="!langague" style="text-align: center"  src="../assets/images/productImages/newImages/{{offer.picture}}.jpg" alt="ion"/>
+
+                    <ion-card-header >
+                    <div class="productName">
+                      <div class="productText">
+                        <ion-card-subtitle *ngIf="!langague"> {{offer.name}}</ion-card-subtitle>
+                        <ion-card-subtitle style="text-align: center; font-size: 16px; line-height: 18px" *ngIf="langague"> {{offer.name}}</ion-card-subtitle>
+                      </div>
+                    </div>
+
+                  </ion-card-header>
+                  <ion-card-content>
+                    <div class="productInformation">
+                      <div class="productDescription">
+                          <div style="text-align: center; font-weight: bold"> {{offer.description}}</div>
+                      </div>
+                      <div class="productPrice">
+                          <div style="text-align: center; font-weight: bold" >{{offer.price}} JD </div>
+                          <hr *ngIf="offer.discount">
+                      </div>
+                      <div *ngIf="offer.discount" class="productPriceDiscount">
+                          <ion-card-subtitle style="text-align: center; font-weight: bold" >{{offer.discountPrice}} JD </ion-card-subtitle>
+                      </div>
+                      <ion-button *ngIf="!langague" color="primary" (click)= goToOffers()>
+                          add
+                      </ion-button>
+                      <ion-button [routerLink]="['/cat']" style="font-weight: bold" *ngIf="langague" color="primary" (click)= goToOffers()>
+                            أطلب الان
+                      </ion-button>
+                    </div>
+                  </ion-card-content>
+
+       </div>
+      </ion-card>
+
+
+       <div style="height: 80px;"></div>
+    </ng-template>
+        </swiper>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+
+
+        <!-- <ion-row class="logoAndButtons rowOne" offset="0">
+            <ion-col size="12" size-md="6" class="logoAndButtonsCol">
+              <div>
+                <div class="logoContainer">
+                  <img  class="imgClass" src="../../assets/images/logoSupermarket.png">
+                </div>
+                <br> <ion-button  [routerLink]="['/cat']">تسوق</ion-button> <br>
+                <p style="font-weight:900; ">قريبا</p>
+                <div class="AppButtonsContainer">
+                  <div class="appButton">
+                    <img src="../../assets/images/iosAppDownloadButton.png">
+                  </div>
+                  <div class="appButton">
+                    <img src="../../assets/images/androidAppDownloadButton.png">
+                  </div>
+                </div>
+             </div>
+            </ion-col>
+        </ion-row> -->
+
+<!-- <ion-row class="mission" offset="0">
+<ion-col size="12">
+    <div class="missionInside">
+        <h2>هدفنا</h2>
+        <h5>تقديم افضل تجربة للعميل عن طريق توفير افضل الاسعار، الخدمات و المنتجات في مكان واحد</h5>
+      </div>
+</ion-col>
+</ion-row> -->
+
+
+
+<div class="footer">Twiick</div>
+
+
+
+</ion-content>

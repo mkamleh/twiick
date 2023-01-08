@@ -1,0 +1,28 @@
+.error{
+  font-size: 12px;
+font-weight: bold;
+color: red;
+height: 40px;
+border-radius: 9px;
+background-color: #ffcbcb;
+width: 100%;
+text-align: center;
+line-height: 40px;
+}
+
+ion-item{
+  margin-bottom: 10px;
+}
+
+.item-has-focus .label-floating.sc-ion-label-md-h{
+  transform: translateX(0) scale(1) translateY(0) !important;
+  //background-color: red;
+}
+
+.item-has-value .label-floating.sc-ion-label-md-h{
+ // background-color: blue;
+  transform: translateX(0) scale(1) translateY(0) !important;
+
+
+
+}

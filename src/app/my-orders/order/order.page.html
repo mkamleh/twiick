@@ -1,0 +1,234 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref='/my-orders'>back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="menuClicked()" >
+                  <ion-icon slot="icon-only" name="menu-outline">
+              </ion-icon>
+            </ion-button>
+            </ion-buttons>
+
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content>
+
+    <ion-grid *ngIf = "doneLoading && !langugue">
+        <ion-row>
+          <ion-col size="12" offset="">
+            <ion-item class="confirmationMsg">
+                <h3 class="checkoutTitle">My order</h3><br>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="row">
+            <ion-col size="4" size-md="2">
+              <h4>Order Id</h4>
+            </ion-col>
+
+            <ion-col size="8"  size-md="4" class="pricee">
+              <h4>{{myOrder.cartId}}</h4>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="row">
+              <ion-col size="5" size-md="2">
+                <h4>status</h4>
+              </ion-col>
+              <ion-col size="2">
+
+              </ion-col>
+              <ion-col size="5"  size-md="2"class="pricee">
+                <h4>{{myOrder.status}}</h4>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="row">
+                <ion-col size="5" size-md="2">
+                  <h4>place on</h4>
+                </ion-col>
+                <ion-col size="2">
+
+                </ion-col>
+                <ion-col size="5" class="pricee" size-md="2">
+                  <h4>{{myOrder.completedOn}}</h4>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="row">
+                  <ion-col size="5" size-md="2">
+                    <h4>place on</h4>
+                  </ion-col>
+                  <ion-col size="2">
+
+                  </ion-col>
+                  <ion-col size="5" class="pricee" size-md="2">
+                    <h4>{{myOrder.deliveryTime}}</h4>
+                  </ion-col>
+                </ion-row>
+
+              <ion-row class="row" justify-content-center>
+                  <ion-col size="5" size-md="2">
+                    <h4>Total</h4>
+                  </ion-col>
+                  <ion-col size="2">
+
+                  </ion-col>
+                  <ion-col size="5" class="pricee" size-md="2">
+                    <h4>{{this.orderTotal}}</h4>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="row" align-items-center>
+                    <ion-col size="5" size-md="2">
+                        <h4>Need help</h4>
+                    </ion-col>
+                    <ion-col size="2">
+
+                    </ion-col>
+                    <ion-col size="5" class="pricee" size-md="2">
+                       <a routerLink="/home/contact-us"><h4>contact us</h4></a>
+                    </ion-col>
+                  </ion-row>
+
+
+        <ion-row>
+          <ion-col size="12" offset="0" size-md="8"  offset-md="2">
+              <ion-list>
+                  <ion-item *ngFor="let product of products">
+                    <ion-avatar slot="start">
+                      <img src="../../assets/images/productImages/{{product.name}}.jpg" alt="ion"/>
+                    </ion-avatar>
+                    <ion-label class="label">
+                      <div class="name">{{product.name}}</div>
+                      <h3>{{product.description}} </h3>
+                      <h3>Quantity: {{product.price}} *{{product.catagory}} </h3>
+                      <h3>Price: {{product.total}}</h3>
+
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+    <ion-grid *ngIf = "doneLoading && langugue">
+        <ion-row>
+          <ion-col size="12" offset="">
+            <ion-item class="confirmationMsg">
+                <h3 class="checkoutTitle">طلبي</h3><br>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="row">
+            <ion-col size="8" size-md="2">
+              <h4>{{myOrder.cartId}}</h4>
+            </ion-col>
+
+            <ion-col size="4"  size-md="4" class="pricee">
+              <h4>رقم الطلب</h4>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="row">
+              <ion-col size="5" size-md="2">
+                <h4>{{myOrder.status}}</h4>
+              </ion-col>
+              <ion-col size="2">
+
+              </ion-col>
+              <ion-col size="5"  size-md="2"class="pricee">
+                <h4>الحالة</h4>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="row">
+                <ion-col size="5" size-md="2">
+                  <h4>{{myOrder.completedOn}}</h4>
+                </ion-col>
+                <ion-col size="2">
+
+                </ion-col>
+                <ion-col size="5" class="pricee" size-md="2">
+                  <h4>تاريخ الطلب</h4>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="row">
+                  <ion-col size="5" size-md="2">
+                    <h4>{{myOrder.deliveryTime}}</h4>
+                  </ion-col>
+                  <ion-col size="2">
+
+                  </ion-col>
+                  <ion-col size="5" class="pricee" size-md="2">
+                    <h4>موعد التوصيل</h4>
+                  </ion-col>
+                </ion-row>
+
+              <ion-row class="row" justify-content-center>
+                  <ion-col size="5" size-md="2">
+                    <div style="display:inline-block">دينار</div><h4 style="display:inline-block; margin-left: 6px;" >{{this.orderTotal}}</h4>
+                  </ion-col>
+                  <ion-col size="2">
+
+                  </ion-col>
+                  <ion-col size="5" class="pricee" size-md="2">
+                    <h4>المجموع</h4>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="row" align-items-center>
+                    <ion-col size="5" size-md="2">
+                        <a routerLink="/home/contact-us"><h4>تواصل معنا</h4></a>
+                    </ion-col>
+                    <ion-col size="2">
+
+                    </ion-col>
+                    <ion-col size="5" class="pricee" size-md="2">
+                        <h4>تحتاج مساعدة؟</h4>
+                    </ion-col>
+                  </ion-row>
+
+
+        <ion-row>
+          <ion-col size="12" offset="0" size-md="8"  offset-md="2">
+              <ion-list>
+                  <ion-item *ngFor="let product of products">
+                    <ion-avatar slot="end">
+                      <img src="../../assets/images/productImages/newImages/{{product.picture}}" alt="ion"/>                    </ion-avatar>
+                    <ion-label class="labelArabic">
+                      <div class="nameArabic">{{product.name}}</div>
+                      <h3>{{product.description}} </h3>
+                      <div style="display: inline-block;position: relative;
+                      top: -5px;
+                      left: -6px;"> دينار</div><h3 style="display: inline-block">  {{product.price}} *{{product.catagory}}  : الكمية </h3>
+                      <h3>{{product.total}} : السعر</h3>
+
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+
+</ion-content>

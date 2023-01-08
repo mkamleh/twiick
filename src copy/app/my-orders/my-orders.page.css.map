@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAA;EACP,UAAU,EAAE,MAAM;EAClB,KAAK,EAAC,IAAI;EACV,MAAM,EAAE,IAAI;CAEb;;AAED,AAAA,cAAc,CAAA;EACZ,MAAM,EAAE,CAAC;EACT,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,GAAG;CAGV",
+    "sources": [
+        "my-orders.page.scss"
+    ],
+    "names": [],
+    "file": "my-orders.page.css"
+}

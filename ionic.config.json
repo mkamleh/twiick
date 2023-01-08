@@ -1,0 +1,7 @@
+{
+  "name": "twiick",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

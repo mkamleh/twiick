@@ -1,0 +1,62 @@
+.checkoutTitle{
+  text-align: center;
+  //background-color: black;
+  width: 100%;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+.name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-height: 16px;
+  max-height: 32px;
+  -webkit-box-orient: vertical;
+  text-align: left ;
+  text-transform: capitalize;
+  white-space: normal;
+}
+
+.labelArabic{
+  text-align: right;
+}
+
+.nameArabic{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-height: 16px;
+  max-height: 32px;
+  -webkit-box-orient: vertical;
+  text-align: right ;
+  text-transform: capitalize;
+  white-space: normal;
+}
+
+.row{
+  margin-top:-10px;
+  justify-content: center;
+}
+
+h4{
+  font-size: 15px;
+font-weight: bold;
+text-transform: capitalize;
+line-height: 2px;
+}
+
+ion-grid{
+  padding: 20px;
+}
+
+
+.pricee{
+  text-align: right;
+  //background-color: black
+}

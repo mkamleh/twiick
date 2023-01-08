@@ -1,0 +1,158 @@
+ion-col {
+  text-align: center;
+}
+
+.catagories {
+  background-color: red;
+  white-space: nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.subcatagoryTitle {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+ion-segment-button.subcatButton {
+  border: 2px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.6);
+  border-radius: 50px;
+  --background-activated: transparent !important;
+  font-size: 12px;
+  font-weight: 1000;
+  margin-left: 4px;
+}
+
+.items {
+  margin-top: 40px;
+  z-index: 1;
+}
+
+.fixed {
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 5;
+  background-color: white;
+  top: 0;
+}
+
+.catSeg {
+  margin-bottom: 15px;
+}
+
+.tabs {
+  display: inline;
+  font-size: 50px;
+  text-align: center;
+}
+
+a.hyperlink {
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.emptyspace {
+  height: 130px;
+  width: 100%;
+}
+
+.subcatButton {
+  --indicator-color: transparent !important;
+  --indicator-color-checked: transparent !important;
+  --background-activated: transparent !important;
+  --background-activated: transparent !important;
+  margin-right: 10px;
+  --ripple-color: transparent;
+  margin-left: 15px;
+}
+
+.catagoryButton {
+  font-size: 12px;
+  font-weight: 1000;
+}
+
+.catagoriesRow {
+  white-space: nowrap;
+  position: relative;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  text-transform: uppercase;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  /* Default value */
+}
+
+.centerr {
+  text-align: center !important;
+}
+
+.action-sheet-title sc-ion-action-sheet-md {
+  text-align: center !important;
+  background-color: aqua;
+}
+
+ion-card-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-height: 12px;
+  max-height: 36px;
+  -webkit-box-orient: vertical;
+  text-align: left;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+ion-card {
+  margin-left: 0px;
+  margin-right: 0px;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.productText {
+  height: 10px;
+}
+
+ion-card img {
+  max-width: 50%;
+  border: 0;
+  margin-top: 10px;
+}
+
+.productPrice {
+  text-align: center;
+  margin-top: 13px;
+}
+
+.productDescription {
+  text-align: center;
+  width: 100%;
+  margin-top: 14px;
+}
+
+ion-toolbar {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+ion-segment {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  z-index: 100;
+}
+
+ion-card-header {
+  text-align: center;
+}
+
+.subCatagories {
+  background-color: green;
+}
+/*# sourceMappingURL=catinside.page.css.map */

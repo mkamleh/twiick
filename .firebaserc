@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "twiick"
+  },
+  "targets": {
+    "twiick": {
+      "hosting": {
+        "app": [
+          "twiick"
+        ]
+      }
+    }
+  }
+}

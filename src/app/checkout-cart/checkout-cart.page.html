@@ -1,0 +1,378 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref='/cat'>back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="menuClicked()" >
+                  <ion-icon slot="icon-only" name="menu-outline">
+              </ion-icon>
+            </ion-button>
+            </ion-buttons>
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu style ="z-index: 2"></app-menu>
+
+
+<ion-content>
+
+
+
+    <div class = "spinnerr" *ngIf="!loadingIsDone">
+        <ion-spinner class="actualSpinner"></ion-spinner>
+    </div>
+
+  <ion-grid  *ngIf="loadingIsDone && !cartIsEmpty && languge">
+    <ion-row>
+      <ion-col size="12" offset="0">
+            <h3 calss="checkoutTitle" style="text-align:right">سلة المشتريات</h3>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row *ngFor="let product of products;let index = index">
+        <ion-col size-md="8"  offset-md="2" size="12" offset="0">
+          <ion-row>
+
+              <ion-col size="9" div class="label">
+                  <div class="nameArabic">{{product.name}}</div>
+                  <div *ngIf="!product.outOfStock" class="descriptionArabic">{{product.description}}</div>
+
+                  <div style="text-align: right">
+                    <div *ngIf="!product.outOfStock" style="display:inline-block;">دينار</div>
+                      <div *ngIf="!product.outOfStock"  style="display:inline-block; margin-left: 4px;">  {{product.price}}  </div>
+                      <div *ngIf="!product.outOfStock" style="display:inline-block;margin-left: 4px;">  x</div>
+
+
+                      <div  *ngIf="!product.outOfStock" class="number">
+                      <ion-input type="number" [(value)]=product.catagory  [id]="['product'+ index]"  min=0 max=9 ></ion-input>
+                     </div>
+                     <div *ngIf="!product.outOfStock" class="quantity">:الكمية</div>
+
+                     <div class="priceeArabic">السعر: {{product.priceTotalForQuantity}} دينار</div>
+                  </div>
+
+                 <div *ngIf="!product.outOfStock" class= "deleteButton">
+                    <ion-button  (click)=updateQuantity(product.id,index) color= "primary">تحديث</ion-button>
+                </div>
+                </ion-col>
+
+              <ion-col size="3" div class="img">
+                  <img src="../../assets/images/productImages/newImages/{{product.picture}}" alt="ion"/>
+                </ion-col>
+
+
+
+
+          </ion-row>
+
+
+
+
+
+        </ion-col>
+      </ion-row>
+
+
+
+
+        <!-- <ion-row>
+          <ion-col size="1">
+
+          </ion-col>
+
+          <ion-col  style ="text-align: left" size="5">
+            <h4>Total</h4>
+          </ion-col>
+          <ion-col size="2" size->
+
+          </ion-col> -->
+          <!-- <ion-col size="5" class="pricee">
+            <h4>{{total}} JD</h4>
+          </ion-col>
+
+          <ion-col size="1">
+
+            </ion-col>
+        </ion-row> -->
+
+
+
+  </ion-grid>
+
+
+  <ion-grid  *ngIf="loadingIsDone && !cartIsEmpty && !languge">
+      <ion-row>
+        <ion-col size="8" offset="2">
+          <ion-item>
+              <h3 calss="checkoutTitle">Shopping cart</h3>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row *ngFor="let product of products;let index = index">
+          <ion-col size-md="8"  offset-md="2" size="12" offset="0">
+            <ion-row>
+                <ion-col size="3" div class="img">
+                    <img src="../../assets/images/productImages/{{product.picture}}.jpg" alt="ion"/>
+                  </ion-col>
+
+                  <ion-col size="9" div class="label">
+                      <div class="name">{{product.picture}}</div>
+                      <div>{{product.description}}</div>
+                      <div class="quantity">Quantity:</div>
+                      <div class="number">
+                      <ion-input type="number" [(value)]=product.catagory  [id]="['product'+ index]"  min=0 max=9 ></ion-input>
+                     </div>
+
+
+                     <div style="display:inline-block; margin-left: 4px;"> x {{product.price}} JD</div><br>
+                     <div class="price">Price: {{product.priceTotalForQuantity}} JD</div>
+                     <div class= "deleteButton">
+                        <ion-button  (click)=updateQuantity(product.id,index) color= "primary">update</ion-button>
+                    </div>
+                    </ion-col>
+
+
+            </ion-row>
+
+
+
+
+
+          </ion-col>
+        </ion-row>
+
+
+
+
+          <!-- <ion-row>
+            <ion-col size="1">
+
+            </ion-col>
+
+            <ion-col  style ="text-align: left" size="5">
+              <h4>Total</h4>
+            </ion-col>
+            <ion-col size="2" size->
+
+            </ion-col> -->
+            <!-- <ion-col size="5" class="pricee">
+              <h4>{{total}} JD</h4>
+            </ion-col>
+
+            <ion-col size="1">
+
+              </ion-col>
+          </ion-row> -->
+
+
+
+    </ion-grid>
+
+  <div *ngIf="loadingIsDone && cartIsEmpty">
+      <ion-grid>
+          <ion-row>
+              <ion-col size="8" offset="2">
+                    <h3 calss="checkoutTitle">Shopping cart</h3>
+                    <div style="text-align:left">Your shopping cart is empty</div>
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+  </div>
+
+
+  <ion-grid>
+      <ion-row>
+          <ion-col size="8" offset="2">
+            <div *ngIf="guest" id="contactInfo" >
+            <ion-list-header>
+                <ion-label *ngIf="languge" class="deliveryoptionTitle">المعلومات الشخصية</ion-label>
+                <ion-label *ngIf="!languge" class="deliveryoptionTitle">Personal Information</ion-label>
+            </ion-list-header>
+
+            <ion-grid>
+                <ion-row>
+                  <ion-col style="text-align: center">
+                      <ion-label *ngIf="!languge" position="floating">Name</ion-label>
+                      <ion-label *ngIf="languge" position="floating">الإسم</ion-label>
+                      <ion-input class="promoCode" type="text"  [(ngModel)] = customerName    ></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="text-align:center;">
+                  <ion-col>
+                      <ion-label *ngIf="!languge" position="floating">Phone number</ion-label>
+                      <ion-label *ngIf="languge" position="floating">رقم التليفون</ion-label>
+                      <ion-input class="promoCode" type="tel" maxlength="10" [(ngModel)] = customerPhone    ></ion-input>
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
+            </div>
+          </ion-col>
+          </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8" offset="2">
+
+          <div class="deliveryOption">
+              <div>
+                  <ion-list>
+                      <ion-radio-group value="normal"  [(ngModel)] = deliveryOption >
+
+
+
+                        <ion-list-header>
+                          <ion-label *ngIf="languge" class="deliveryoptionTitle">خيارات التوصيل</ion-label>
+                          <ion-label *ngIf="!languge" class="deliveryoptionTitle">Delivery Option</ion-label>
+                        </ion-list-header>
+
+                        <ion-item *ngIf="languge" style="text-align: right">
+                          <ion-label >توصيل فوري ( خلال ساعة) إضافة دينارين</ion-label>
+                          <ion-radio  (click)="deliveryOptionChanged('express')" slot="end" value="express"></ion-radio>
+                        </ion-item>
+
+                        <ion-item *ngIf="languge" style="text-align: right">
+                          <ion-label *ngIf ="!freeDeliveryUnder5">  توصيل عادي (غدا) مجانا للطلبات فوق ٥ دنانير</ion-label>
+                          <ion-label *ngIf ="freeDeliveryUnder5">  توصيل عادي (غدا) مجانا لفترة محدودة لجميع الطلبات</ion-label>
+                          <ion-radio  (click)="deliveryOptionChanged('normal')" slot="end" value="normal"></ion-radio>
+                        </ion-item>
+
+
+                        <ion-item *ngIf="!languge" >
+                          <ion-radio  (click)="deliveryOptionChanged('express')"  value="express"></ion-radio>
+                          <ion-label style="padding-left: 10px;" >Express Delivery within 60 minutes (2JDs extra fee)</ion-label>
+                        </ion-item>
+
+                        <ion-item *ngIf="!languge" >
+                          <ion-radio  (click)="deliveryOptionChanged('normal')"  value="normal"></ion-radio>
+                          <ion-label style="padding-left: 10px;" *ngIf ="!freeDeliveryUnder5">  Free Delivery (tomorrow) for orders more than 5JDs</ion-label>
+                          <ion-label style="padding-left: 10px;"  *ngIf ="freeDeliveryUnder5">  Free Delivery (tomorrow) for all orders</ion-label>
+                        </ion-item>
+
+
+                      </ion-radio-group>
+                    </ion-list>
+
+
+                    <!-- <ion-datetime display-format="MMM DD YYYY" picker-format="YY MMM DD"> LOOOOOL
+
+                    </ion-datetime> -->
+
+
+
+
+              </div>
+            </div>
+
+            <div *ngIf="showTime && languge" class="deliverySlots" style="text-align: right">
+                <ion-select  [(ngModel)] = deliveryTime placeholder="اختر الوقت" okText="تم" cancelText="الغاء">
+                  <ion-select-option value="08:00 - 10:00 صباحا">08:00 - 10:00 صباحا</ion-select-option>
+                  <ion-select-option value="10:00 - 12:00 صباحا">10:00 - 12:00 صباحا</ion-select-option>
+                  <ion-select-option value="12:00 - 02:00 مساءا">12:00 - 02:00 مساءا</ion-select-option>
+                  <ion-select-option value="02:00 - 04:00 مساءا">02:00 - 04:00 مساءا</ion-select-option>
+                  <ion-select-option value="04:00 - 06:00 مساءا">04:00 - 06:00 مساءا</ion-select-option>
+                  <ion-select-option value="06:00 - 08:00 مساءا">06:00 - 08:00 مساءا</ion-select-option>
+                  <ion-select-option value="08:00 - 10:00 مساءا">08:00 - 10:00 مساءا</ion-select-option>
+                </ion-select>
+            </div>
+
+            <div  *ngIf="showTime && !languge " class="deliverySlots" >
+                <ion-select  [(ngModel)] = deliveryTime placeholder="Select Time" okText="okey" cancelText="Cancel">
+                  <ion-select-option value="08:00 - 10:00 صباحا">08:00 - 10:00 AM</ion-select-option>
+                  <ion-select-option value="10:00 - 12:00 صباحا">10:00 - 12:00 AM</ion-select-option>
+                  <ion-select-option value="12:00 - 02:00 مساءا">12:00 - 02:00 PM</ion-select-option>
+                  <ion-select-option value="02:00 - 04:00 مساءا">02:00 - 04:00 PM</ion-select-option>
+                  <ion-select-option value="04:00 - 06:00 مساءا">04:00 - 06:00 PM</ion-select-option>
+                  <ion-select-option value="06:00 - 08:00 مساءا">06:00 - 08:00 PM</ion-select-option>
+                  <ion-select-option value="08:00 - 10:00 مساءا">08:00 - 10:00 PM</ion-select-option>
+                </ion-select>
+            </div>
+
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+
+
+
+  <form [formGroup]="form">
+      <app-location-picker (locationPick)="onLocationPicked($event)"></app-location-picker>
+  </form>
+
+<ion-grid>
+  <ion-row>
+    <ion-col style="text-align: center">
+        <ion-label *ngIf="!languge" position="floating">Discount Code</ion-label>
+        <ion-label *ngIf="languge" position="floating">كود الخصم</ion-label>
+        <ion-input class="promoCode" type="text"  [(ngModel)] = name    ></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row style="text-align:center;">
+    <ion-col>
+      <ion-button *ngIf="!languge" (click)="checkCodeAndApply()">apply</ion-button>
+      <ion-button *ngIf="languge" (click)="checkCodeAndApply()">تفعيل الخصم</ion-button>
+      <p>{{this.msg}}</p>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
+
+</ion-content>
+
+<ion-footer style ="z-index: 1"  *ngIf="!languge">
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row *ngIf="showDeliveryAlert">
+          <ion-col style="text-align:center">
+            1 JD is added delivery fee. Order 8 JD to get free delivery
+          </ion-col>
+          <ion-col *ngIf="freeDeliveryUnder5" style="text-align:center">
+            Free Delivery for all orders for limited time
+            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="8" offset = "2">
+              <ion-button [disabled]="!locationAvaialble" (click) =sumbitOrder() class = "checkout">
+              Confirm  {{total}}JD</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-toolbar>
+  </ion-footer>
+
+
+  <ion-footer style ="z-index: 1"  *ngIf="languge">
+    <ion-toolbar>
+      <ion-grid>
+          <ion-row *ngIf="showDeliveryAlert" >
+              <ion-col *ngIf="!freeDeliveryUnder5" style="text-align:center">
+                تم إضافة دينار خدمة توصيل. اطلب فوق ال ٥ دنانير لكي تحصل علي توصيل مجاني
+              </ion-col>
+              <ion-col *ngIf="freeDeliveryUnder5" style="text-align:center">
+                  توصيل مجاني لفترة محدودة لجميع الطلبات
+                </ion-col>
+            </ion-row>
+        <ion-row>
+          <ion-col size="8" offset = "2">
+              <ion-button [disabled]="!locationAvaialble" (click) =sumbitOrder() class = "checkout"  >
+             <div style="display:inline-block; margin-right: 7px;">دينار </div> تأكيد  {{total}}</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-toolbar>
+  </ion-footer>
+
+

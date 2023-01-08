@@ -1,0 +1,328 @@
+
+
+.footer{
+  background-color:black;
+  width:100%;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+
+// main menu
+#wrapper {
+  //float: left;
+//display:inline-block;
+position: relative;
+  height: 100%;
+  width: 33%;
+  //background: red;
+}
+
+.main-item {
+width:100%;
+height:100%;
+position:relative;
+
+}
+
+.line {
+position: absolute;
+height: 3px;
+width:20px;
+background:#f36f5f;
+border-radius:10px;
+transition: all cubic-bezier(0.25, 0.1, 0.28, 1.54) 0.52s;
+}
+
+.line01 {
+margin:20px;
+}
+
+.line02 {
+margin: 30px 20px 20px 20px;
+}
+
+
+.menu.close .line01 {
+transform:rotate(47deg);
+margin: 20px;
+}
+
+.menu.close .line02, .menu.close .line03 {
+transform:rotate(-47deg);
+margin: 20px;
+}
+
+
+#menuResponsive{
+  height:100%;
+  background-color: #1b1b1b;
+  width: 100%;
+  position: fixed;
+  display: none;
+  z-index: 2;
+
+}
+#menuResponsive ul{
+  padding-top: 50px;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  top: 200px;
+}
+#menuResponsive li{
+  //color: #e6dfd8;
+  color:#f36f5f;
+  margin: 20px;
+  text-align: center;
+
+}
+
+#menuResponsive.openMenuResponsive{
+  //left: 0px;
+  display: block;
+}
+///////menu end
+
+.gridMain{
+  //height: 100%;
+  //background-color: red;
+}
+
+.offer{
+  height: 100vh;
+}
+
+
+
+/////ion card
+
+
+productPrice{
+  //background-color: yellow;
+  text-align: center;
+  margin-top: 13px;
+  position:relative;
+}
+
+hr {
+    height: 0.1px;
+    border-width: 1px;
+    border-color: red;
+    -moz-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    transform: rotate(15deg);
+    width: 53px;
+    position: relative;
+    top: -19px;
+    color: red;
+    background-color: red;
+}
+
+ion-card-subtitle{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-height: 16px;
+  max-height: 36px;
+  -webkit-box-orient: vertical;
+  text-align: left ;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.productPriceDiscount{
+  margin-top: -13px;
+  margin-bottom: 10px;
+}
+
+ion-card{
+  margin-left: 0px;
+  margin-right: 0px;
+  box-shadow: none !important;
+
+}
+
+.productText{
+  height:10px;
+  //background-color: green;
+}
+
+ion-card img{
+  max-width: 50%;
+  border: 0;
+  margin-top: 10px;
+}
+
+.productDescription{
+  text-align: center;
+  width: 100%;
+  //background-color: red;
+  margin-top: 7px;
+  margin-bottom: 7px;
+
+}
+
+ion-card-header{
+  text-align: center;
+  //background-color: red;
+}
+
+//// ion card end
+
+
+//main and mission
+
+.appButton{
+  //background-color: red;
+  width: 30%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.logoAndButtons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //height: 80vh;
+  //height: 60vh;
+}
+
+h2{
+  font-size: 32px;
+  text-align: center;
+}
+
+h5{
+  font-size: 14px;
+  font-weight: 504;
+  text-align: center;
+
+}
+
+.mission{
+  background-color: #000000;
+  color:white;
+  padding-right: 20px;
+  padding-left: 20px;
+  //height: 60vh;
+  //height: 100vh;
+
+
+}
+
+.logoAndButtons{
+  text-align: center;
+}
+
+.logoContainer{
+  width: 100%;
+  height: 20%;;
+  position: relative;
+  right: 7px;
+}
+
+.logoContainer2{
+  width: 100%;
+  //background-color: red;
+}
+
+.swiper-slide{
+  text-align: center;
+  background-color: red;
+}
+
+.counter{
+  //background-color: red;
+  height: 120px;
+  width: 100%;
+  //background-color: #f36f5f;
+  margin-top: -19px;
+  max-height: 86px;
+}
+
+.hidee{
+  opacity: 0;
+  //background-color: #1b1b1b;
+}
+
+.show{
+  opacity: 1;
+  //background-color: #1b1b1b;
+}
+
+
+.swiperSlide{
+  width:70%;
+}
+
+.swiperSlide2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgClass{
+  max-width:30%;
+}
+
+.imgClass2{
+  margin-left: -4px;
+  //max-width:7%;
+}
+//main and mission end
+
+
+.logoRow{
+  display: flex;
+  justify-content: center;
+}
+
+
+.imgBanner{
+  text-align: center;
+  max-height: 280px;
+  //max-height: 15%;
+}
+
+@media (max-width: 1200px) {
+  .imgBanner{
+    text-align: center;
+    max-height: 200px;
+    //max-height: 15%;
+  }
+ }
+
+
+ @media (max-width: 1000px) {
+  .imgDesktop{
+    display: none;
+  }
+  .imgMob{
+    display: block;
+  }
+}
+
+@media(min-width: 1001px) {
+  .imgDesktop{
+    display: block;
+  }
+  .imgMob{
+    display: none;
+  }
+}
+
+
+
+
+
+
+

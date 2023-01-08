@@ -1,0 +1,104 @@
+.deleteButton {
+  width: 100%;
+  text-align: right;
+}
+
+.checkout {
+  width: 100%;
+}
+
+ion-grid {
+  --ion-grid-padding:    10px;
+}
+
+.number {
+  display: inline-block;
+  text-align: center;
+}
+
+.price {
+  width: 49%;
+  display: inline-block;
+}
+
+.deleteButton {
+  width: 49%;
+  display: inline-block;
+}
+
+.nameArabic {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-height: 16px;
+  max-height: 32px;
+  -webkit-box-orient: vertical;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.line {
+  width: 200px;
+  height: 3px;
+}
+
+.descriptionArabic {
+  text-align: right;
+}
+
+.quantity {
+  display: inline-block;
+}
+
+.priceeArabic {
+  text-align: right;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: grey;
+  height: 1px;
+}
+
+.label {
+  padding-top: 15px;
+  width: 70%;
+  display: inline-block;
+}
+
+.img {
+  width: 30%;
+  display: inline-block;
+}
+
+.number {
+  width: 30%;
+}
+
+h2 {
+  padding-bottom: 10px;
+}
+
+@media (min-width: 1000px) {
+  .checkoutTitle {
+    text-align: center;
+  }
+}
+
+.spinnerr {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.actualSpinner {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+/*# sourceMappingURL=checkout-cart.page.css.map */

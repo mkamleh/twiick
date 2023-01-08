@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref='/'>back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="menuClicked()" >
+                  <ion-icon slot="icon-only" name="menu-outline">
+              </ion-icon>
+            </ion-button>
+            </ion-buttons>
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content>
+
+  <div id="recaptcha-container"></div>
+
+
+  <form [formGroup]="form">
+  <app-location-picker (locationPick)="onLocationPicked($event)"></app-location-picker>
+  </form>
+
+
+
+</ion-content>

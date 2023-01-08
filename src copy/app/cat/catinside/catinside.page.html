@@ -1,0 +1,171 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref='/cat'>back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="menuClicked()" >
+                  <ion-icon slot="icon-only" name="menu-outline">
+              </ion-icon>
+            </ion-button>
+            </ion-buttons>
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content  [scrollEvents]="true"  (ionScroll) = "onScroll($event)">
+
+
+          <div class="fixed">
+
+        <ion-segment   id ="catIonSegment" scrollable [value]="catId" class="catSeg">
+          <div [id]="['button' + catagory]" *ngFor="let catagory of catagories">
+              <ion-segment-button class="catagoryButton" value={{catagory}} (click)=changeCatagory(catagory)>
+                  {{catagory}}
+            </ion-segment-button>
+          </div>
+
+        </ion-segment>
+
+
+
+
+        <ion-segment  id ="subCatIonSegment" scrollable [value]="sub"  (ionChange)="onSegmentChangeSubCatagagory($event)" >
+
+            <div *ngFor="let cat of subcatagory">
+                <div *ngIf="cat.catagory==catId">
+                    <!-- <a  class="hyperlink" [attr.href]="'/cat/'+ catIdForAnchorUseOnly + '#' + cat.subcatagory"> -->
+                    <div [id]="['button' + cat.subcatagory]">
+                        <ion-segment-button  value={{cat.subcatagory}} indicator= "none" class="subcatButton" (click)= "toTop(cat.subcatagory)" >
+                            <!-- <ion-col size="3" size-md="2" offset=""></ion-col> -->
+
+                                 {{cat.subcatagory}}
+
+                       </ion-segment-button>
+                    </div>
+
+                  <!-- </a> -->
+
+
+
+
+                  </div  >
+            </div>
+          </ion-segment>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="items" style="margin-bottom: 58px;"  >
+
+
+            <div *ngFor="let cat of subcatagory;let index1=index"  >
+            <div [id]=[cat.subcatagory] >
+              <ion-row *ngIf="cat.catagory==catId">
+                  <!-- <div class="emptyspace">lool</div> -->
+                  <div [id]="['anchor' + cat.subcatagory]" style="width:100%; position: relative; top: -130px;
+                  height: 5px;"></div>
+
+                  <ion-col size="8" offset="2">
+                      <div class="subcatagoryTitle">
+                      {{cat.subcatagory}}
+                      </div>
+                  </ion-col>
+                </ion-row>
+                <app-count-down-timer [dDayText]="cat.product[0].offerDate" *ngIf="cat.catagory == 'عروض' && cat.catagory==catId "></app-count-down-timer>
+              </div>
+
+
+
+
+                <ion-row *ngIf="cat.catagory==catId">
+                <ion-col size="4" size-md="3" *ngFor="let product of cat.product;let index = index;" >
+                    <ion-card>
+
+
+
+                        <img [ngClass]="{'imgOpacity': product.outOfStock}"  *ngIf="langugue" src="../../assets/images/productImages/newImages/{{product.picture}}" alt="ion"/>
+                        <img [ngClass]="{'imgOpacity': product.outOfStock}" *ngIf="!langugue" src="../../assets/images/productImages/{{product.picture}}.jpg" alt="ion"/>
+                        {{product.picture}}
+                        <div *ngIf="!langugue && product.outOfStock"  class="outOfStock">Out</div>
+                        <div class="outOfStock"  *ngIf="langugue && product.outOfStock">نفذت</div>
+
+                        <ion-card-header>
+                          <div class="productText">
+                            <ion-card-subtitle *ngIf="!langugue"> {{product.name}}</ion-card-subtitle>
+                            <ion-card-subtitle style="text-align: right" *ngIf="langugue"> {{product.name}}</ion-card-subtitle>
+
+                          </div>
+                        </ion-card-header>
+                        <ion-card-content>
+
+                          <div class="productDescription">
+                              <ion-card-subtitle style="text-align: center"> {{product.description}}</ion-card-subtitle>
+                          </div>
+
+                          <div class="productPrice">
+                              <ion-card-subtitle style="text-align: center" >{{product.price}} JD </ion-card-subtitle>
+                              <hr *ngIf="product.discount">
+                          </div>
+                          <div *ngIf="product.discount" class="productPriceDiscount">
+                            <ion-card-subtitle style="text-align: center" >{{product.discountPrice}} JD </ion-card-subtitle>
+                        </div>
+                        <div *ngIf="!product.discount" class="productPriceDiscountGap">
+                          <ion-card-subtitle style="text-align: center; width:10px; height: 10px;;" > </ion-card-subtitle>
+                      </div>
+
+                      <!-- <div *ngIf="product.quaLeft && langugue" class="productquantityleft">
+                           {{product.offerQuntityLeft}} متبقي
+                      </div> -->
+
+                      <div *ngIf="product.quaLeft && !langugue" class="productquantityleft">
+                           {{product.offerQuntityLeft}} left
+                      </div>
+
+
+                      <div  class="productPriceDiscountGap">
+                        <ion-card-subtitle style="text-align: center; width:10px; height: 272px;;" > </ion-card-subtitle>
+                    </div>
+
+                          <ion-input type="number"  [id] ="['qua' + index + index1]"  ngModel  #quantity="ngModel" [ngModel] = "quan" min=1 max=9></ion-input>
+
+                          <ion-button [disabled] = "product.outOfStock" *ngIf="!langugue" color="primary" (click)= addItemToCart(index,index1,product,quantity)>
+                              add
+                            </ion-button>
+
+                            <ion-button [disabled] = "product.outOfStock" *ngIf="langugue" color="primary" (click)= addItemToCart(index,index1,product,quantity)>
+                                أضف
+                              </ion-button>
+                          </ion-card-content>
+                      </ion-card>
+                  </ion-col>
+              </ion-row>
+            </div>
+    </div>
+
+
+
+
+</ion-content>
+
+<app-checkout-button *ngIf="!langugue">
+
+</app-checkout-button>
+
+<app-checkout-button-arabic *ngIf="langugue">
+
+</app-checkout-button-arabic>
+
+

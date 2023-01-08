@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="end">
+          <ion-button (click)="menuClicked()" >
+                <ion-icon slot="icon-only" name="menu-outline">
+            </ion-icon>
+          </ion-button>
+          </ion-buttons>
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content>
+    <ion-grid *ngIf="!shoppingCartinUseIsNull && !langugue">
+        <ion-row>
+          <ion-col size="12" offset="">
+            <ion-item class="confirmationMsg">
+                <h3 class="checkoutTitle">Thank you for shopping with Twiick. Your order {{this.shoppingCartinUse.cartId}} is confirmaed and will be delivered within 3 hours</h3><br>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="1">
+
+              </ion-col>
+            <ion-col style="text-align: left" size="5">
+              <h4>Total</h4>
+            </ion-col>
+
+            <ion-col size="5" class="pricee">
+              <h4>{{this.total}} JD</h4>
+            </ion-col>
+            <ion-col size="1">
+
+              </ion-col>
+          </ion-row>
+        <ion-row *ngFor="let product of products">
+          <ion-col size="12" offset="0" size-md="8"  offset-md="2">
+              <ion-list>
+                  <ion-item>
+                    <ion-avatar slot="start">
+                        <img src="../../assets/images/productImages/{{product.name}}.jpg" alt="ion"/>
+                    </ion-avatar>
+                    <ion-label class="label">
+                      <div class="name">{{product.name}}</div>
+                      <h3>{{product.description}}</h3>
+                      <h3>Quantity: {{product.catagory}}*{{product.price}} JD</h3>
+                      <h3>Price: {{product.priceTotalForQuantity}}</h3>
+
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+    <ion-grid *ngIf="!shoppingCartinUseIsNull && langugue">
+        <ion-row>
+          <ion-col size="12" offset="">
+            <ion-item class="confirmationMsg" *ngIf="shoppingCartinUse.deliveryOption == 'express'">
+                <h3 class="checkoutTitleArabic">شكرا لتسويقكم عن طريقنا. يتم تحضر الان الطلب و سيتم توصيله  خلال ساعة  </h3><br>
+            </ion-item>
+
+            <ion-item class="confirmationMsg" *ngIf="shoppingCartinUse.deliveryOption == 'normal'">
+                <h3 class="checkoutTitleArabic">شكرا لتسويقكم عن طريقنا. يتم تحضر الان الطلب و سيتم توصيله غدا بين  {{this.shoppingCartinUse.deliveryTime}}  </h3><br>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="1">
+
+
+
+              </ion-col>
+
+              <ion-col size="5" class="priceeArabic">
+                  <div style="display: inline-block"><h4> دينار </h4></div>
+                  <h4 style="display: inline-block; margin-left: 6px;">  {{this.total}} </h4>
+                </ion-col>
+
+            <ion-col style="text-align: right;" size="5">
+              <h4>المجموع</h4>
+            </ion-col>
+
+
+            <ion-col size="1">
+
+              </ion-col>
+          </ion-row>
+        <ion-row *ngFor="let product of products" style="text-align: right;">
+          <ion-col size="12" offset="0" size-md="8"  offset-md="2">
+              <ion-list>
+                  <ion-item>
+                    <ion-label class="labelArabic" style="text-align: right">
+                      <div class="nameArabic">{{product.name}}</div>
+                      <h3>{{product.description}}</h3>
+                      <h3>{{product.price}} *  {{product.catagory}} : الكمية</h3>
+                      <h3> {{product.priceTotalForQuantity}} : السعر</h3>
+
+                    </ion-label>
+                    <ion-avatar slot="end">
+                      <img src="../../assets/images/productImages/newImages/{{product.picture}}" alt="ion"/>
+                    </ion-avatar>
+                  </ion-item>
+                </ion-list>
+
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+
+</ion-content>

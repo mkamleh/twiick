@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref='/'>back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="menuClicked()" >
+                  <ion-icon slot="icon-only" name="menu-outline">
+              </ion-icon>
+            </ion-button>
+            </ion-buttons>
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content>
+
+  <!-- <form #f=ngForm (ngSubmit)="onSubmit(f)" *ngIf="!languge">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-item >
+              <ion-label position="floating">Name</ion-label>
+              <ion-input  ngModel name="name" required minlength="3" #nameC="ngModel" ></ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <ion-item >
+                <ion-label position="floating">Number</ion-label>
+                <ion-input type="number" ngModel name="number" required minlength="10" #numberC="ngModel" ></ion-input>
+              </ion-item>
+        </ion-col>
+      </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-button   color="primary" type="submit"  [disabled]="!f.valid" expand="block" >submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+
+  <form #f=ngForm (ngSubmit)="onSubmit(f)" *ngIf="languge">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+              <ion-item >
+                  <ion-label position="floating">الاسم</ion-label>
+                  <ion-input  ngModel name="name" required minlength="3" #nameC="ngModel" ></ion-input>
+                </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item >
+                    <ion-label position="floating">رقم التليفون</ion-label>
+                    <ion-input type="number" ngModel name="number" required minlength="10" #numberC="ngModel" ></ion-input>
+                  </ion-item>
+            </ion-col>
+          </ion-row>
+
+        <ion-row>
+          <ion-col>
+              <ion-button   color="primary" type="submit"  [disabled]="!f.valid" expand="block" >ارسال</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </form> -->
+
+<ion-grid *ngIf="!languge">
+  <ion-row>
+    <ion-col>
+        <ion-card>
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+              <ion-card-title style="text-align:center">Contact Us</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content style="text-align:center">
+                <a href="https://www.m.me/twiick" class="link">Facebook message</a>
+            </ion-card-content>
+          </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+<ion-grid *ngIf="languge">
+    <ion-row>
+      <ion-col>
+          <ion-card>
+              <ion-card-header>
+                <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+                <ion-card-title style="text-align:center">تواصل معنا</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content style="text-align:center">
+                  <a href="https://www.m.me/twiick" class="link">Facebook message</a>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+</ion-content>

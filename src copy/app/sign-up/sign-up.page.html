@@ -1,0 +1,185 @@
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+      <ion-buttons slot="end">
+          <ion-button (click)="menuClicked()" >
+                <ion-icon slot="icon-only" name="menu-outline">
+            </ion-icon>
+          </ion-button>
+          </ion-buttons>
+    <ion-title routerLink='/'>Twiick</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-menu></app-menu>
+
+
+<ion-content>
+
+    <div class="error" *ngIf="msgConfirmationError && !languge">
+        <div   class="errorText">Your code is Wrong, please try again</div>
+      </div>
+
+      <div class="error" *ngIf="msgConfirmationError && languge">
+          <div   class="errorText">رمز التحقق خطأ ، الرجاء المحاوله مره اخره</div>
+        </div>
+
+    <ion-item  *ngIf="!isLogin && !isVerified && !languge" style ="text-align: center;">
+        <ion-label position="floating">Enter your Phone Number</ion-label>
+        <ion-input [(ngModel)]="number"  required number minlength="10" ></ion-input>
+    </ion-item>
+
+    <ion-button (click)= "sendConfirmationMsg()" expand="block" *ngIf="!isLogin && !isVerified &&  !languge">
+      Send Confirmation Message
+    </ion-button>
+
+
+
+
+
+    <ion-item  *ngIf="!isLogin && !isVerified && languge" style ="text-align: center;">
+        <ion-label position="floating">الرجاء ادخال رقم الهاتف</ion-label>
+        <ion-input [(ngModel)]="number"  required number minlength="10" ></ion-input>
+    </ion-item>
+
+    <ion-button (click)= "sendConfirmationMsg()"  expand="block" *ngIf="!isLogin && !isVerified &&  languge">
+      إرسال رسالة نحقق
+    </ion-button>
+
+  <form  *ngIf="!languge " #f=ngForm (ngSubmit)="onSubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-list>
+
+            <div class="error" *ngIf="errorMsgLogin">
+              <div   class="errorText">Email and password combination do not match</div>
+            </div>
+
+            <div  *ngIf="errorboolean" class="error">
+                <div class="errorText">{{error}}</div>
+            </div>
+
+              <ion-item  *ngIf = "!isLogin && isVerified">
+                  <ion-label position="floating">Name</ion-label>
+                  <ion-input type="email" ngModel name="name" required minlength="4" #nameC="ngModel" ></ion-input>
+                </ion-item>
+
+            <ion-item *ngIf = "isVerified">
+              <ion-label position="floating">E-Mail</ion-label>
+              <ion-input type="email" ngModel name="email" required email #emailC="ngModel" ></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf = "!isLogin && isVerified">
+                <ion-label position="floating">E-Mail confirmation</ion-label>
+                <ion-input type="email" ngModel name="emailConfirmation" required email #emailConfirmation="ngModel" ></ion-input>
+
+            </ion-item>
+            <ion-item *ngIf ="emailC && isVerified &&    !isLogin && emailC.touched && !emailC.valid " lines="none">
+                <p>Should be valid Email address</p>
+            </ion-item>
+            <ion-item *ngIf = "isVerified">
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password"  ngModel name="password" required minlength="8" #passwordC="ngModel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf = "!isLogin && isVerified">
+                <ion-label position="floating">Password confirmation</ion-label>
+                <ion-input type="password" ngModel name="passwordConfirmation" required minlength="8" #passwordConformation="ngModel"></ion-input>
+            </ion-item>
+             <ion-item *ngIf="passwordC && isVerified &&  !isLogin && passwordC.touched && !passwordC.valid " lines="none">
+              <p>Should be atleast 8 characters</p>
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" offset="3">
+          <ion-button color="primary" type="button" fill="clear" (click)="switchMode()" expand="block">switch to {{isLogin ? 'signup' : 'Login'}}</ion-button>
+          <ion-button *ngIf="isVerified" color="primary" type="submit"  [disabled]="!f.valid" expand="block" (click)="onLogin()">{{isLogin ? 'Login' : 'SignUp'}}</ion-button>
+
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+
+
+
+  <form   *ngIf="languge" #f=ngForm (ngSubmit)="onSubmit(f)">
+
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10" offset="1">
+            <ion-list>
+
+              <div class="error" *ngIf="errorMsgLogin">
+                <div   class="errorText">الرجاء التحقق من الايميل و الباسورد</div>
+              </div>
+
+              <div  *ngIf="errorboolean" class="error">
+                  <div class="errorText">{{error}}</div>
+              </div>
+
+                <ion-item style="text-align: right;" *ngIf = "!isLogin && isVerified">
+                    <ion-label position="floating">الإسم</ion-label>
+                    <ion-input type="email" ngModel name="name" required minlength="4" #nameC="ngModel" ></ion-input>
+
+                  </ion-item>
+              <ion-item *ngIf="isVerified" style ="text-align: right;">
+                <ion-label position="floating">الإيميل</ion-label>
+                <ion-input type="email" ngModel name="email" required email #emailC="ngModel" ></ion-input>
+
+              </ion-item>
+
+              <ion-item style="text-align: right;" *ngIf = "!isLogin && isVerified">
+                  <ion-label position="floating">تأكيد الإيميل</ion-label>
+                  <ion-input type="email" ngModel name="emailConfirmation" required email #emailConfirmation="ngModel" ></ion-input>
+
+                </ion-item>
+                <ng-container *ngIf="emailC">
+                    <ion-item style="text-align: right;" *ngIf ="isVerified && !isLogin &&  emailC.touched && !emailC.valid  " lines="none">
+                        <p>يجب ان يكون ايميل بريد صحيح</p>
+                    </ion-item>
+                </ng-container>
+
+              <ion-item style="text-align: right;" *ngIf="isVerified" >
+                  <ion-label  position="floating">الباسورد</ion-label>
+                  <ion-input type="password"  ngModel name="password" required minlength="8" #passwordC="ngModel"></ion-input>
+              </ion-item>
+              <ion-item  style="text-align: right;" *ngIf = "!isLogin && isVerified" >
+                  <ion-label position="floating">تاكيد الباسورد</ion-label>
+                  <ion-input type="password" ngModel name="passwordConfirmation" required minlength="8" #passwordConformation="ngModel"></ion-input>
+              </ion-item>
+              <ng-container *ngIf="passwordC">
+                  <ion-item  style="text-align: right;" *ngIf="isVerified && !isLogin && passwordC.touched && !passwordC.valid" lines="none">
+                      <p>يجب ان يتكون الباسورد من ٨ خانات</p>
+                    </ion-item>
+              </ng-container>
+
+            </ion-list>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6" offset="3">
+            <ion-button color="primary" type="button" fill="clear" (click)="switchMode()" expand="block">تغير الى {{isLogin ? 'انشاء حساب' : 'تسجيل الدخول'}}</ion-button>
+            <ng-container *ngIf="isVerified">
+
+            <ion-button *ngIf="isVerified"  color="primary" type="submit"  [disabled]="!f.valid" expand="block" (click)="onLogin()">{{isLogin ? 'تسجيل الدخول' : 'انشاء حساب جديد'}}</ion-button>
+
+          </ng-container>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+
+</ion-content>
+
+<div id="recaptcha-container" style="display: block;"></div>
+
